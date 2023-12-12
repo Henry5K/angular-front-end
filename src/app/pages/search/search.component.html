@@ -1,16 +1,16 @@
 <div class="p-2">
     <div class="p-3 flex justify-center">
         <div class="w-full">
-            <div class="flex">
+            <div class="flex ">
                 <input type="text" id="search" [(ngModel)]="searchTerm" placeholder="Digite o nome do usuário"
-                    class="w-full py-2 px-4 border border-gray-600 rounded-l text-white bg-zinc-700 outline-none" />
+                    class="w-full py-2 px-4 rounded text-white bg-zinc-700 outline-none" />
                 <button (click)="searchUsers()" class="bg-blue-500 text-white py-2 px-4 rounded-r md:ml-2 hover:bg-blue-700">Pesquisar</button>
             </div>
         </div>
     </div>
     
     <div *ngIf="searchResults.length === 0">
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2 mt-5">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2 mt-2">
             <ng-container *ngFor="let placeholder of [1, 2, 3, 4]">
                 <div class="bg-zinc-900 overflow-hidden rounded-lg m-2 p-4 flex flex-col relative">
                     <div class="w-full h-[250px] bg-zinc-800 rounded-md animate-pulse"></div>

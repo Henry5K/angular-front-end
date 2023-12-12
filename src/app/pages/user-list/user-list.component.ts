@@ -1,3 +1,4 @@
+// users-list.component.ts
 import { Component, OnInit } from '@angular/core';
 import { NgbModal, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
 import { GithubService } from '../../core/services/github.service';
@@ -41,5 +42,10 @@ export class UsersListComponent implements OnInit {
             ...this.darkThemeModalOptions,
             size: 'lg'
         }).componentInstance.userDetails = userDetails;
+    }
+
+    removeUser(user: any) {
+        this.savedUsers = this.savedUsers.filter(savedUser => savedUser.login !== user.login);
+        localStorage.setItem('savedUsers', JSON.stringify(this.savedUsers));
     }
 }
