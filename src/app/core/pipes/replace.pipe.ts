@@ -1,4 +1,3 @@
-// bold-text.pipe.ts
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
