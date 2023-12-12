@@ -1,4 +1,3 @@
-// users-list.component.ts
 import { Component, OnInit } from '@angular/core';
 import { NgbModal, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
 import { GithubService } from '../../core/services/github.service';
