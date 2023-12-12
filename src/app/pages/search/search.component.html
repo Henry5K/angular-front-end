@@ -1,0 +1,63 @@
+<div class="p-2">
+    <div class="p-3 flex justify-center">
+        <div class="w-full">
+            <div class="flex">
+                <input type="text" id="search" [(ngModel)]="searchTerm" placeholder="Digite o nome do usuário"
+                    class="w-full py-2 px-4 border border-gray-600 rounded-l text-white bg-zinc-700 outline-none" />
+                <button (click)="searchUsers()" class="bg-blue-500 text-white py-2 px-4 rounded-r md:ml-2 hover:bg-blue-700">Pesquisar</button>
+            </div>
+        </div>
+    </div>
+    
+    <div *ngIf="searchResults.length === 0">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2 mt-5">
+            <ng-container *ngFor="let placeholder of [1, 2, 3, 4]">
+                <div class="bg-zinc-900 overflow-hidden rounded-lg m-2 p-4 flex flex-col relative">
+                    <div class="w-full h-[250px] bg-zinc-800 rounded-md animate-pulse"></div>
+                    <div class="flex-grow">
+                        <div class="w-[70%] rounded bg-zinc-800 h-[25px] mt-6 animate-pulse"></div>
+                        <div class="w-[50%] rounded bg-zinc-800 h-[25px] mt-4 animate-pulse"></div>
+                    </div>
+                    <div class="bg-zinc-800 text-white h-[40px] rounded w-full mt-6 animate-pulse"></div>
+                </div>
+            </ng-container>
+        </div>
+    </div>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2 mt-5">
+        <div *ngFor="let user of searchResults | paginate: { itemsPerPage: 4, currentPage: currentPage, totalItems: searchResults?.length }"
+            [ngClass]="{'border-2 border-green-600': exactSearchTerm === user.login }"
+            class="bg-zinc-900 overflow-hidden rounded-lg m-2 p-4 flex flex-col relative">
+    
+            <div class="w-full h-[250px] rounded-md mb-4 bg-center bg-cover bg-no-repeat"
+                [style.backgroundImage]="'url(' + user.avatar_url + ')'"
+            ></div>
+    
+            <div class="flex-grow">
+                <h3 class="text-xl font-semibold">{{ user.login | fallback }}</h3>
+                <p class="text-gray-400">ID: {{ user.id | fallback }}</p>
+            </div>
+    
+            <button *ngIf="!user.isSaved; else savedButton" (click)="saveUser(user)"
+                class="bg-green-700 text-white py-2 px-4 mt-4 rounded w-full">
+                <div class="flex items-center justify-center gap-2">
+                    <mat-icon>save</mat-icon>
+                    <span class="font-bold">Salvar usuário</span>
+                </div>
+            </button>
+    
+            <ng-template #savedButton>
+                <button class="bg-gray-500 text-white py-2 px-4 mt-4 rounded w-full" [disabled]="true">
+                    <div class="flex items-center justify-center gap-2">
+                        <mat-icon>done</mat-icon>
+                        <span class="font-bold">Usuário salvo</span>
+                    </div>
+                </button>
+            </ng-template>
+        </div>
+    </div>
+    
+    <div *ngIf="searchResults.length > 0" class="max-w-6xl mx-auto mt-8 flex items-center justify-center">
+        <pagination-controls class="text-white" (pageChange)="currentPage = $event"></pagination-controls>
+    </div>
+</div>

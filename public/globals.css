@@ -1,0 +1,33 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+    --primary-font-family: "Inter", sans-serif;
+    --secondary-font-family: "Afacad", sans-serif;
+
+    --background-primary: #202124;
+}
+
+body {
+    color: #e5e7eb;
+    font-family: var(--primary-font-family), var(--secondary-font-family);
+    background-color: var(--background-primary);
+}
+
+.dark-modal .modal-content {
+    background-color: #343a40;
+    color: #ffffff;
+}
+
+.dark-modal .modal-header {
+    border-bottom: 1px solid #454d55;
+}
+
+.dark-modal .modal-footer {
+    border-top: 1px solid #454d55;
+}
+
+body.dark-modal-open .modal-backdrop {
+    background-color: rgba(0, 0, 0, 0.5);
+}

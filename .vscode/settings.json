@@ -1,0 +1,18 @@
+{
+    "files.exclude": {
+        "**/.git": false,
+        "**/.svn": false,
+        "**/.hg": false,
+        "**/CVS": false,
+        "**/.DS_Store": false,
+        "**/Thumbs.db": false,
+        "**/node_modules": false,
+        "**/.angular": false,
+        "**/tsconfig.json": false,
+        "**/tsconfig.spec.json": false,
+        "**/tsconfig.app.json": false,
+        "**/.vscode": false,
+        "**/.editorconfig": false,
+        "**/angular.json": false
+    }
+}

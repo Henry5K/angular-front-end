@@ -1,0 +1,38 @@
+<div class="p-2">
+    <h2 class="text-2xl ml-4 font-bold">Usuários Salvos</h2>
+    <div *ngIf="savedUsers.length === 0">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2 mt-2">
+            <ng-container *ngFor="let placeholder of [1, 2, 3, 4]">
+                <div class="bg-zinc-900 overflow-hidden rounded-lg m-2 p-4 flex flex-col relative">
+                    <div class="w-full h-[250px] bg-zinc-800 rounded-md animate-pulse"></div>
+                    <div class="flex-grow">
+                        <div class="w-[70%] rounded bg-zinc-800 h-[25px] mt-6 animate-pulse"></div>
+                        <div class="w-[50%] rounded bg-zinc-800 h-[25px] mt-4 animate-pulse"></div>
+                    </div>
+                    <div class="bg-zinc-800 text-white h-[40px] rounded w-full mt-6 animate-pulse"></div>
+                </div>
+            </ng-container>
+        </div>
+    </div>
+
+    <div *ngIf="savedUsers.length > 0">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2 mt-2">
+            <div *ngFor="let user of savedUsers"
+                class="bg-zinc-900 overflow-hidden rounded-lg m-2 p-4 flex flex-col relative">
+                <div class="w-full h-[250px] rounded-md mb-4 bg-center bg-cover bg-no-repeat"
+                    [style.backgroundImage]="'url(' + user.avatar_url + ')'"></div>
+                <div class="flex-grow">
+                    <h3 class="text-xl font-semibold">{{ user.login }}</h3>
+                    <p class="text-gray-400">id: {{ user.id | replace }}</p>
+                    <button (click)="getUserDetails(user.login)"
+                        class="bg-blue-500 text-white py-2 px-4 mt-4 rounded w-full">
+                        <div class="flex items-center justify-center gap-2">
+                            <mat-icon>menu</mat-icon>
+                            <span class="font-bold">Dados do usuario</span>
+                        </div>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
